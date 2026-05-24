@@ -306,4 +306,14 @@
                 referencedColumnNames="id"
                 constraintName="fk_client_favorite_cars_cars"/>
     </changeSet>
+
+    <changeSet id="012-drop-car-passports-cars-foreign-key" author="lera">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fkqgfyf0cjrmqr8bmvuu1i66sek"/>
+        </preConditions>
+
+        <dropForeignKeyConstraint
+                baseTableName="car_passports"
+                constraintName="fkqgfyf0cjrmqr8bmvuu1i66sek"/>
+    </changeSet>
 </databaseChangeLog>

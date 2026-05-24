@@ -1,6 +1,10 @@
 package carshop.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -37,9 +41,6 @@ public class Car extends BaseEntity {
 
     @ManyToMany(mappedBy = "favoriteCars")
     private final List<Client> interestedClients = new ArrayList<>();
-
-    @OneToOne(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
-    private CarPassport passport;
 
     protected Car() {
     }
@@ -113,18 +114,6 @@ public class Car extends BaseEntity {
 
     public List<Client> getInterestedClients() {
         return interestedClients;
-    }
-
-    public CarPassport getPassport() {
-        return passport;
-    }
-
-    public void setPassport(CarPassport passport) {
-        this.passport = passport;
-
-        if (passport != null) {
-            passport.setCar(this);
-        }
     }
 
     @Override
