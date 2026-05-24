@@ -9,6 +9,4 @@ public class CarPassportDao extends GenericDao<CarPassport> {
     public CarPassportDao() {
         super(CarPassport.class);
     }
-
-
 }
