@@ -34,17 +34,10 @@ public class CarPassportService {
             throw new IllegalArgumentException(ENTITY_NOT_FOUND);
         }
 
-        if (car.getPassport() != null) {
-            throw new IllegalArgumentException("У автомобиля уже есть паспорт.");
-        }
-
         CarPassport passport = new CarPassport(vin, color, engineNumber);
+        passport.setCarId(car.getId());
 
-        car.setPassport(passport);
-
-        Car updatedCar = carDao.update(car);
-
-        return updatedCar.getPassport();
+        return carPassportDao.save(passport);
     }
 
     /**

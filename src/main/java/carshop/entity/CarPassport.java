@@ -1,6 +1,8 @@
 package carshop.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 /**
  * Представляет технический паспорт автомобиля.
@@ -19,9 +21,8 @@ public class CarPassport extends BaseEntity {
     @Column(name = "engine_number", nullable = false, unique = true, length = 50)
     private String engineNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "car_id", nullable = false, unique = true)
-    private Car car;
+    @Column(name = "car_id", nullable = false, unique = true)
+    private Long carId;
 
     protected CarPassport() {
     }
@@ -56,18 +57,19 @@ public class CarPassport extends BaseEntity {
         this.engineNumber = engineNumber;
     }
 
-    public Car getCar() {
-        return car;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
     @Override
     public String toString() {
         return "CarPassport{" +
                 "id=" + getId() +
+                ", carId=" + carId +
                 ", vin='" + getVin() + '\'' +
                 ", color='" + getColor() + '\'' +
                 ", engineNumber='" + getEngineNumber() + '\'' +
