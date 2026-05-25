@@ -14,8 +14,7 @@ public class Main {
             HibernateUtil.getSessionFactory();
             System.out.println(MessageFormatter.formatSuccess(Messages.HIBERNATE_STARTED_SUCCESS));
 
-            new carshop.demo.HibernateProblemsDemo()
-                    .reproduceLazyInitializationException(53L);
+            new AppConfig().createConsoleApp().run();
         } catch (RuntimeException ex) {
             System.out.println(MessageFormatter.formatError(Messages.UNKNOWN_ERROR));
             ex.printStackTrace();
