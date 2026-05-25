@@ -1,12 +1,11 @@
-package carshop;
+package carshop.demo;
 
 import carshop.common.MessageFormatter;
 import carshop.common.Messages;
-import carshop.config.AppConfig;
 import carshop.util.HibernateUtil;
 import carshop.util.LiquibaseUtil;
 
-public class Main {
+public class HibernateProblemsMain {
     public static void main(String[] args) {
         try {
             LiquibaseUtil.update();
@@ -14,8 +13,7 @@ public class Main {
             HibernateUtil.getSessionFactory();
             System.out.println(MessageFormatter.formatSuccess(Messages.HIBERNATE_STARTED_SUCCESS));
 
-            new carshop.demo.HibernateProblemsDemo()
-                    .reproduceLazyInitializationException(53L);
+            new HibernateProblemsDemo().runAll(53L);
         } catch (RuntimeException ex) {
             System.out.println(MessageFormatter.formatError(Messages.UNKNOWN_ERROR));
             ex.printStackTrace();

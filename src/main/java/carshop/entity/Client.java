@@ -1,6 +1,13 @@
 package carshop.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import org.hibernate.annotations.BatchSize;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,8 +26,9 @@ public class Client extends Person {
     @Column(name = "discount_percentage", nullable = false, precision = 5, scale = 2)
     private BigDecimal discountPercentage;
 
+    @BatchSize(size = 10)
     @OneToMany(mappedBy = "client")
-    private final List<Sale> sales = new ArrayList<>();
+    private List<Sale> sales = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
